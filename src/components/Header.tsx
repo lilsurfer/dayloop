@@ -115,13 +115,13 @@ export function Header({
 
   useEffect(() => {
     if (!progressOpen) return;
-    const handleOutside = (e: MouseEvent) => {
+    const handleOutside = (e: PointerEvent) => {
       if (progressRef.current && !progressRef.current.contains(e.target as Node)) {
         setProgressOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleOutside);
-    return () => document.removeEventListener("mousedown", handleOutside);
+    document.addEventListener("pointerdown", handleOutside);
+    return () => document.removeEventListener("pointerdown", handleOutside);
   }, [progressOpen]);
 
   const hasActiveFilters =
@@ -197,7 +197,7 @@ export function Header({
             </div>
 
             {/* Category Icon + Popover */}
-            <div className="relative">
+            <div className="sm:relative">
               <button
                 ref={categoryBtnRef}
                 type="button"
@@ -317,7 +317,7 @@ export function Header({
               </button>
 
               {progressOpen && (
-                <div className="absolute right-0 top-12 z-50 w-60 rounded-2xl border border-white/10 bg-[#10141F]/95 p-3.5 shadow-2xl backdrop-blur-xl">
+                <div className="absolute right-0 top-12 z-50 w-60 max-w-[calc(100vw-1.5rem)] rounded-2xl border border-white/10 bg-[#10141F]/95 p-3.5 shadow-2xl backdrop-blur-xl">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-white">
                       Today&apos;s Loop

@@ -53,7 +53,7 @@ export function CategoryMenu({
   useEffect(() => {
     if (!open) return;
 
-    const handlePointerDown = (e: MouseEvent) => {
+    const handlePointerDown = (e: PointerEvent) => {
       const target = e.target as Node;
       if (
         menuRef.current &&
@@ -64,8 +64,8 @@ export function CategoryMenu({
       }
     };
 
-    document.addEventListener("mousedown", handlePointerDown);
-    return () => document.removeEventListener("mousedown", handlePointerDown);
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
   }, [open, onClose, anchorRef]);
 
   if (!open) return null;
@@ -86,7 +86,7 @@ export function CategoryMenu({
       ref={menuRef}
       role="menu"
       aria-label="Filter games by category"
-      className="absolute right-0 top-12 z-50 w-[272px] rounded-2xl border border-white/[0.1] bg-[#10141F]/95 p-2 shadow-2xl shadow-black/60 backdrop-blur-xl"
+      className="absolute left-3 right-3 top-[60px] z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-2xl border border-white/[0.1] bg-[#10141F]/95 p-2 shadow-2xl shadow-black/60 backdrop-blur-xl sm:left-auto sm:right-0 sm:top-12 sm:w-[272px]"
     >
       <div className="px-2.5 py-1.5 text-[10px] font-mono uppercase tracking-wider text-white/45">
         Categories
